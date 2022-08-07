@@ -1,6 +1,3 @@
 {
-  "extends": ["@commitlint/config-conventional"],
-  "rules": {
-    "header-case": [0, "always", ["always", "upper-case"]]
-  }
+  "extends": ["@commitlint/config-conventional"]
 }
