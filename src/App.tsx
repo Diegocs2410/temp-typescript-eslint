@@ -1,13 +1,15 @@
 import { Header } from 'components/Header';
-import { Button } from 'components/Button';
 import { ReactComponent as Logo } from 'assets/favicon.svg';
+import { Button } from 'components/Button';
 
 function App() {
   return (
-    <div className="App">
-      <Header title="hola" />
-      <Logo height={100} width={100} />
-      <Button onClick={() => alert('hola')}>Heyo</Button>
+    <div className="container mx-auto p-10">
+      <Header title="Scalable App" />
+      <div className="grid place-content-center mt-10">
+        <Logo height={100} width={100} />
+      </div>
+      <Button onClick={() => alert('hello')}>Hello</Button>
     </div>
   );
 }
