@@ -1,6 +1,6 @@
 import { Header } from 'components/Header';
 import { ReactComponent as Logo } from 'assets/favicon.svg';
-import { Button } from 'components/Button';
+import Counter from 'components/Counter';
 
 function App() {
   return (
@@ -9,7 +9,8 @@ function App() {
       <div className="grid place-content-center mt-10">
         <Logo height={100} width={100} />
       </div>
-      <Button onClick={() => alert('hello')}>Hello</Button>
+
+      <Counter />
     </div>
   );
 }
