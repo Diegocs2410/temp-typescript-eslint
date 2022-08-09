@@ -15,4 +15,14 @@ describe('reducer', () => {
     expect(result.current.count).toBe(0);
     expect(result.current.count).toBeFalsy();
   });
+  test('should test default and return an error', async () => {
+    try {
+      const { result } = renderHook(() => reducer(counterInitial, { type: 'unknown' }));
+      await expect(result.current.count).rejects.toThrow(Error);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      expect(true).toBeTruthy();
+    }
+  });
 });

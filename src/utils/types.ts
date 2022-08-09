@@ -3,7 +3,7 @@ export const DECREMENT = 'DECREMENT';
 export const RESET = 'RESET';
 
 export interface ICounterActions {
-  type: typeof INCREMENT | typeof DECREMENT | typeof RESET;
+  type: typeof INCREMENT | typeof DECREMENT | typeof RESET | 'unknown';
   payload?: number;
 }
 
