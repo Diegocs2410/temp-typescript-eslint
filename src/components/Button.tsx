@@ -3,10 +3,13 @@ interface ButtonProps {
   children: React.ReactNode;
 }
 
-export function Button({ onClick, children }: ButtonProps) {
+export const Button = ({ onClick, children }: ButtonProps) => {
   return (
-    <button className="bg-gray-400" onClick={onClick}>
+    <button
+      className="bg-gray-200 rounded-md text-gray-600 px-4 uppercase py-1 font-bold duration hover:scale-105 hover:bg-gray-300 transition-colors"
+      onClick={onClick}
+    >
       {children}
     </button>
   );
-}
+};
