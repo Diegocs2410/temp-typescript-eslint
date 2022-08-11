@@ -10,3 +10,14 @@ export interface ICounterActions {
 export const counterInitial = {
   count: 0,
 };
+
+export interface IBoxApps {
+  to: string;
+  text: string;
+}
+
+export interface IHeader {
+  title: string;
+  size?: '5xl' | '4xl' | '3xl' | '2xl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs';
+  classes?: string;
+}
