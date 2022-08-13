@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import './index.css';
 import 'tailwindcss/tailwind.css';
+import 'tw-elements';
 
 import App from './App';
 import Home from 'pages/Home';
