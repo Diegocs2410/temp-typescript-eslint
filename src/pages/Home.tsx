@@ -7,7 +7,7 @@ const Home = () => {
       <span className="text-2xl text-white mt-5 block text-center mx-auto">
         What app do you want?
       </span>
-      <div className="flex mt-16 justify-between gap-3">
+      <div className="lg:flex mt-16 lg:justify-between gap-3">
         <BoxApp to="counter" text="Counter" />
         <BoxApp to="notes" text="notes" />
       </div>
