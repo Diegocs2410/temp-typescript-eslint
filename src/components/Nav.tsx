@@ -10,13 +10,22 @@ const Nav = () => {
           <Logo height={30} width={30} />
         </NavLink>
       </div>
-      <NavLink to="/" className={({ isActive }) => verifiedActiveClassName(isActive)}>
+      <NavLink
+        to="/"
+        className={({ isActive }) => verifiedActiveClassName(isActive)}
+      >
         Home
       </NavLink>
-      <NavLink to="/counter" className={({ isActive }) => verifiedActiveClassName(isActive)}>
+      <NavLink
+        to="/counter"
+        className={({ isActive }) => verifiedActiveClassName(isActive)}
+      >
         Counter
       </NavLink>
-      <NavLink to="/notes" className={({ isActive }) => verifiedActiveClassName(isActive)}>
+      <NavLink
+        to="/notes"
+        className={({ isActive }) => verifiedActiveClassName(isActive)}
+      >
         notes
       </NavLink>
     </nav>
