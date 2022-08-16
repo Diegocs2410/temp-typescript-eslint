@@ -1,4 +1,8 @@
-import { decrementReducer, incrementReducer, resetReducer } from 'utils/actions';
+import {
+  decrementReducer,
+  incrementReducer,
+  resetReducer,
+} from 'utils/actions';
 import { INCREMENT, DECREMENT, RESET } from 'utils/types';
 
 describe('Should test actions', () => {
