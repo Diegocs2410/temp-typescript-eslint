@@ -1,19 +1,78 @@
 import { Button } from 'components/Button';
-import useTasks from 'hooks/useTasks';
+import notesReducer, { initialState } from 'hooks/useNotesReducer';
+import { FormEvent, useReducer, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import {
+  addNote,
+  deleteNote,
+  toggleNote,
+  updateNote,
+} from 'utils/actions/notes';
+import { initialNoteState, TaskType } from '../utils/types';
 
-const Notes = () => {
-  const {
-    tasks,
-    task,
-    setTask,
-    removeTask,
-    addTask,
-    toggleTask,
-    editTask,
-    titleRef,
-    isEdit,
-  } = useTasks();
+const NotesRedux = () => {
+  const [state, dispatch] = useReducer(notesReducer, initialState);
+  const [isEdit, setIsEdit] = useState(false);
+  const titleRef = useRef<HTMLInputElement>(null);
+
+  const [task, setTask] = useState(initialNoteState);
+
+  const addTask = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const ntask = {
+      ...task,
+      id: Date.now() + '',
+    };
+    if (isEdit) {
+      dispatch(updateNote(task));
+      setIsEdit(false);
+      Swal.fire(
+        'Actualizada!',
+        'Tu tarea ha sido actualizada correctamente.',
+        'success'
+      );
+    } else {
+      dispatch(addNote(ntask));
+      Swal.fire(
+        'Agregada!',
+        'Tu tarea ha sido agregada correctamente.',
+        'success'
+      );
+    }
+    setTask(initialNoteState);
+    titleRef.current && titleRef.current.focus();
+  };
+
+  const editTask = (id: string) => {
+    setIsEdit(true);
+    const note = state.find((n) => n.id === id);
+    setTask(note);
+    dispatch(updateNote(note));
+  };
+
+  const toggleTask = (id: string) => dispatch(toggleNote(id));
+
+  const removeTask = (id: string) => {
+    Swal.fire({
+      title: '¿Seguro de esto?',
+      text: 'Esta acción no se puede deshacer!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar!',
+    })
+      .then((_result): void => {
+        if (_result.value) {
+          dispatch(deleteNote(id));
+          Swal.fire('Eliminado!', 'Tu tarea ha sido eliminada.', 'success');
+        }
+      })
+      .catch(() => {
+        Swal.fire('Cancelado', 'Tu tarea es esta segura :)', 'error');
+      });
+  };
 
   return (
     <div className="container flex mx-auto mt-10">
@@ -24,7 +83,6 @@ const Notes = () => {
             <label htmlFor="title" className="text-white font-bold">
               Titulo
               <input
-                name="tarea"
                 ref={titleRef}
                 type="title"
                 tabIndex={0}
@@ -33,6 +91,7 @@ const Notes = () => {
                 value={task.title}
                 onChange={(e) => setTask({ ...task, title: e.target.value })}
                 required
+                name="title"
               />
             </label>
           </div>
@@ -48,16 +107,17 @@ const Notes = () => {
                   setTask({ ...task, description: e.target.value })
                 }
                 required
+                name="description"
               />
             </label>
           </div>
           <Button>{isEdit ? 'Editar' : 'Agregar'} </Button>
           <p className="mt-5">
             <Link
-              to="/notes-redux"
+              to="/notes"
               className="text-white font-semibold text-sm underline cursor-pointer mt-15"
             >
-              Versión con redux/useReducer
+              Versión con customHook
             </Link>
           </p>
         </form>
@@ -67,10 +127,10 @@ const Notes = () => {
           Listado Tareas
         </h3>
         <div className="p-5 bg-darkbl mx-10 rounded-md mt-3">
-          {tasks?.length > 0 ? (
+          {state?.length > 0 ? (
             <ul className="flex flex-col first:mt-0">
-              {tasks?.map(({ completed, description, id, title }) => (
-                <>
+              {(state as TaskType[])?.map(
+                ({ completed, description, id, title }) => (
                   <li
                     key={id}
                     className="flex w-full mt-2 bg-teal-50 px-5 py-2 rounded-md shadow-md border border-darkbl text-darkcl "
@@ -120,8 +180,8 @@ const Notes = () => {
                       </div>
                     </div>
                   </li>
-                </>
-              ))}
+                )
+              )}
             </ul>
           ) : (
             <p className="text-white font-semibold text-base text-center mt-5">
@@ -134,4 +194,4 @@ const Notes = () => {
   );
 };
 
-export default Notes;
+export default NotesRedux;

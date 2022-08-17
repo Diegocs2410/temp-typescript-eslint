@@ -9,6 +9,7 @@ import 'tw-elements';
 import App from './App';
 import Home from 'pages/Home';
 import Notes from 'pages/Notes';
+import NotesRedux from 'pages/NotesRedux';
 import Counter from 'components/Counter';
 
 const container = document.getElementById('root');
@@ -21,6 +22,7 @@ if (container) {
           <Route path="/" element={<App />}>
             <Route index element={<Home />} />
             <Route path="notes" element={<Notes />} />
+            <Route path="notes-redux" element={<NotesRedux />} />
             <Route path="counter" element={<Counter />} />
           </Route>
         </Routes>

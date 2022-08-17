@@ -9,6 +9,8 @@ const useTasks = () => {
   const [tasks, setTasks] = useState<TaskType[]>(localTasks as TaskType[]);
   const [task, setTask] = useState<TaskType>({} as TaskType);
   const [isEdit, setIsEdit] = useState(false);
+  // Ref
+  const titleRef = useRef(undefined as unknown as HTMLInputElement);
 
   const removeTask = (id: string) => {
     Swal.fire({
@@ -20,11 +22,10 @@ const useTasks = () => {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Si, eliminar!',
     })
-      .then((_result) => {
+      .then((_result): void => {
         if (_result.value) {
           setTasks(tasks.filter((t) => t.id !== id));
-        } else {
-          Swal.fire('Cancelado', 'Tu tarea es esta segura :)', 'error');
+          Swal.fire('Eliminado!', 'Tu tarea ha sido eliminada.', 'success');
         }
       })
       .catch(() => {
@@ -32,9 +33,7 @@ const useTasks = () => {
       });
   };
 
-  // Ref
-  const titleRef = useRef(undefined as unknown as HTMLInputElement);
-  const updateTask = () => {
+  function updateTask(): void {
     tasks.forEach((item: TaskType) => {
       if (item.id === task.id) {
         item.title = titleRef.current.value;
@@ -45,9 +44,9 @@ const useTasks = () => {
     setIsEdit(false);
     setTask(intitalTask);
     titleRef.current.focus();
-  };
+  }
 
-  const createTask = () => {
+  function createTask() {
     const newTask = {
       id: (Date.now() + Math.random() * 1000).toFixed(0),
       title: task.title,
@@ -57,7 +56,7 @@ const useTasks = () => {
     setTasks([...tasks, newTask]);
     setTask(intitalTask);
     titleRef.current.focus();
-  };
+  }
 
   const addTask = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -76,7 +75,7 @@ const useTasks = () => {
   };
 
   useEffect(() => {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+    localStorage.setItem('tasks', JSON.stringify(tasks) || '[]');
   }, [tasks]);
 
   return {
