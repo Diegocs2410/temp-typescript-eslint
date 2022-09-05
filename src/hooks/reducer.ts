@@ -2,7 +2,10 @@ import { DECREMENT, ICounterActions, INCREMENT, RESET } from 'utils/types';
 
 const initialState = { count: 0 };
 
-export default function reducer(state: typeof initialState, action: ICounterActions) {
+export default function reducer(
+  state: typeof initialState,
+  action: ICounterActions
+) {
   switch (action.type) {
     case INCREMENT:
       return { count: state.count + 1 };
