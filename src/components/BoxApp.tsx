@@ -13,7 +13,6 @@ const BoxApp = ({ to, text }: IBoxApps) => {
         provident magni unde cupiditate, architecto adipisci aliquid quia
         debitis amet quae porro quis laborum, labore distinctio assumenda nulla
         beatae quaerat libero.
-
       </p>
     </Link>
   );
