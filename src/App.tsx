@@ -1,4 +1,3 @@
-import { ReactComponent as Logo } from 'assets/favicon.svg';
 import { Outlet } from 'react-router-dom';
 import Nav from 'components/Nav';
 
