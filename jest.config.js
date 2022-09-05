@@ -8,4 +8,7 @@ module.exports = {
   extensionsToTreatAsEsm: ['.ts', '.tsx'],
   moduleDirectories: ['node_modules', './src'],
   rootDir: './src',
+  transform: {
+    '^.+\\.svg$': '<rootDir>/svgTransform.js',
+  },
 };
