@@ -10,6 +10,7 @@ import App from './App';
 import Home from 'pages/Home';
 import Notes from 'pages/Notes';
 import NotesRedux from 'pages/NotesRedux';
+
 import Counter from 'components/Counter';
 
 const container = document.getElementById('root');

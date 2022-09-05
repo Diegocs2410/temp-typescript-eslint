@@ -45,10 +45,22 @@ export type TaskType = {
   description: string;
 };
 
+
 export enum NotesAction {
   ADD_NOTE = 'ADD_NOTE',
   DELETE_NOTE = 'DELETE_NOTE',
   UPDATE_NOTE = 'UPDATE_NOTE',
   GET_NOTES = 'GET_NOTES',
   TOGGLE_NOTE = 'TOGGLE_NOTE',
+
+export interface IBoxApps {
+  to: string;
+  text: string;
+}
+
+export interface IHeader {
+  title: string;
+  size?: '5xl' | '4xl' | '3xl' | '2xl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs';
+  classes?: string;
+
 }

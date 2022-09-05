@@ -34,7 +34,7 @@
     "react-router-dom": "^6.3.0",
     "sweetalert2": "^11.4.29",
     "tw-elements": "^1.0.0-alpha12",
-    "vite-plugin-svgr": "2.2.1"
+    "vite-plugin-svgr": "2.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.13",

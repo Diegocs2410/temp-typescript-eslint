@@ -7,5 +7,6 @@ export function Header({ title, size, classes }: IHeader) {
     >
       {title}
     </h1>
+
   );
 }

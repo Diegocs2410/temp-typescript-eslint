@@ -8,6 +8,7 @@ import {
   resetReducer,
   decrementReducer,
 } from 'utils/actions';
+
 import { Header } from './Header';
 
 const Counter = () => {
@@ -22,6 +23,7 @@ const Counter = () => {
         <p className="p-5 text-white text-center text-4xl font-bold ">
           {count}
         </p>
+
         <div className="flex gap-5">
           <Button onClick={decrement}>-</Button>
           <Button onClick={reset}>Reset</Button>
